@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"context"
+	"github.com/treenq/treenq-cli/src/store"
 
 	"github.com/treenq/treenq-cli/src/models"
 )
@@ -24,9 +25,14 @@ func NewContextUsecase(store Store) *ContextUsecase {
 
 // NewContext crates new context and sets it as active
 func (u *ContextUsecase) NewContext(ctx context.Context, name, url string) error {
+	info, err := store.GetInfo(url)
+	if err != nil {
+		return err
+	}
 	return u.store.NewContext(models.Context{
 		Name: name,
 		Url:  url,
+		Info: info,
 	})
 }
 
