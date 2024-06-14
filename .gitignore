@@ -1,6 +1,7 @@
 # IDE specific
 .vscode
 __debug*
+.idea
 
 # useless staff
 .DS_Store
